@@ -1,0 +1,188 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+    <title>Supply Chain</title>
+    <!-- Adding styles here -->
+    <style type="text/css">
+        body {
+            font-family: Arial, sans-serif;
+            margin: 0;
+            padding: 0;
+            background-color: #f4f4f4;
+        }
+
+        .container {
+            width: 80%;
+            margin: auto;
+            overflow: hidden;
+            padding: 20px;
+        }
+
+        h1 {
+            background-color: #1e4a73;
+            color: white;
+            padding: 15px;
+            border-radius: 10px;
+            text-align: center;
+        }
+
+        form {
+            background-color: #ffffff;
+            padding: 20px;
+            border-radius: 10px;
+            box-shadow: 0px 0px 10px 0px #000;
+        }
+
+        label {
+            display: block;
+            margin: 5px 0;
+            font-size: 18px;
+        }
+
+        form input[type="text"] {
+            width: 100%;
+            padding: 10px;
+            margin: 5px 0;
+            border-radius: 5px;
+            border: 1px solid #ccc;
+        }
+
+        form input[type="submit"] {
+            display: block;
+            width: 100%;
+            margin-top: 10px;
+            padding: 10px;
+            background-color: #1e4a73;
+            color: #ffffff;
+            border: none;
+            border-radius: 5px;
+            cursor: pointer;
+        }
+
+        form input[type="submit"]:hover {
+            background-color: #e8491d;
+        }
+
+        /* Table Styles */
+        table {
+            width: 90%;
+            margin: 20px auto;
+            border-collapse: collapse;
+        }
+
+        table, th, td {
+            border: 1px solid #1e4a73;
+            padding: 10px;
+            text-align: left;
+        }
+
+        table tr:nth-child(even) {
+            background-color: #f4f4f4;
+        }
+
+        table tr:nth-child(odd) {
+            background-color: #eef6fc;
+        }
+
+        table th {
+            background-color: #1e4a73;
+            color: #ffffff;
+        }
+
+        /* Button Styles */
+        button {
+            display: block;
+            width: 20%;
+            height: 40px;
+            margin: 20px auto;
+            background-color: #1e4a73;
+            color: #ffffff;
+            border: none;
+            border-radius: 5px;
+            cursor: pointer;
+        }
+
+        button:hover {
+            background-color: #e8491d;
+        }
+    </style>
+
+<script>
+   function showAllProducts() {
+       fetch('/showAllProducts')
+           .then(response => response.json())
+           .then(data => {
+               const productsTable = document.getElementById('productsTable');
+               productsTable.innerHTML = ''; // Clear existing table contents
+               data.products.forEach(product => {
+                   const row = `<tr>
+                              <td>${product[0]}</td>
+                              <td>${product[1]}</td>
+                              <td>${product[2]}</td>
+                              <td>${product[3]}</td>
+                              <td>${product[4]}</td>
+                           </tr>`;
+                   productsTable.innerHTML += row;
+               });
+               const productCount = document.getElementById('productCount');
+               productCount.innerText = `Total Products: ${data.products.length}`;
+           });
+   }
+</script>
+
+</head>
+
+<body>
+    <div class="container">
+        <h1>Supply Chain Hyperledger</h1>
+        <form action="/registerProduct" method="post">
+            <label for="ID">ID:</label>
+            <input type="text" id="ID" name="ID" required><br><br>
+
+            <label for="holderName">Holder Name:</label>
+            <input type="text" id="holderName" name="holderName" required><br><br>
+
+            <label for="location">Location:</label>
+            <input type="text" id="location" name="location" required><br><br>
+
+            <label for="city">City:</label>
+            <input type="text" id="city" name="city" required><br><br>
+
+            <label for="vehical">Vehicle:</label>
+            <input type="text" id="vehical" name="vehical" required><br><br>
+
+            <input type="submit" value="Register Product">
+        </form>
+
+        <h2>Total Products: <span id="productCount"></span></h2>
+
+        <!-- Button to show all products -->
+        <button onclick="showAllProducts()">Show All Products</button>
+
+        <!-- Table to display all products -->
+        <table id="productsTable">
+            <tr>
+                <th>ID</th>
+                <th>Holder Name</th>
+                <th>Location</th>
+                <th>City</th>
+                <th>Vehicle</th>
+            </tr>
+            <!-- Rows will be added here by the showAllProducts function -->
+        </table>
+
+        <!-- Form to change the holder of a product -->
+        <form id="changeHolderForm" action="/changeHolder" method="post">
+            <label for="ID">Product ID:</label>
+            <input type="text" id="ID" name="ID" required><br><br>
+
+            <label for="newHolderName">New Holder Name:</label>
+            <input type="text" id="newHolderName" name="newHolderName" required><br><br>
+
+            <input type="submit" value="Change Holder">
+        </form>
+    </div>
+</body>
+
+</html>
