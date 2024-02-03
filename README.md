@@ -60,6 +60,9 @@ The Web3 Product Registry App is a Flask-based web application that interacts wi
 - **/changeHolder (POST):**
   - Handles changing the holder of a product.
   - Expects form data: Product ID, New Holder Name.
+ 
+    ![image](https://github.com/md-t-a-tonoy/python_supplychain_DAPP/assets/117182746/90084c9e-115b-4c27-833d-7e660ad26616)
+
 
 ## Smart Contract Functions
 
