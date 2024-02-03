@@ -1,4 +1,4 @@
-# Web3 Product Registry App Documentation
+# Web3 Supply Chain App Documentation
 
 ## Overview
 
@@ -79,5 +79,5 @@ The Web3 Product Registry App is a Flask-based web application that interacts wi
 - This documentation assumes a basic understanding of Ethereum, smart contracts, and Flask.
 
 ## Feel free to  raise your questions-
-Mail-thouhedul.alam.tonoy@gmail.com
+Mail- thouhedul.alam.tonoy@gmail.com
 
